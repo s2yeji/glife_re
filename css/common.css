@@ -36,44 +36,126 @@ font-weight: 900;
   --font-size-m: 1.312rem;
   --font-size-s: 0.857em;
   --font-size-f: 0.875rem;
-
   --gap: 1rem;
-
-  font-family: "Noto Sans KR";
+}
+.wrap {
+  overflow: hidden;
+}
+body {
+  font-family: "Noto Sans KR", sans-serif;
+}
+section {
+  padding: 100px 0;
+  position: relative;
+}
+section::before,
+section::after {
+  content: "";
+  position: absolute;
+}
+section > .inner {
+  position: relative;
+}
+section h2 {
+  padding-bottom: 50px;
+}
+section h2 > * {
+  display: block;
+}
+section h2 > strong {
+  font-family: "GmarketSansBold";
+  letter-spacing: -1px;
+  font-size: 40px;
+  padding-bottom: 10px;
+  color: var(--color-dg);
+  line-height: 1.2;
+}
+section h2 > span {
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-section > .inner,
+.moreText1 {
+  position: absolute;
+  right: 0;
+  top: 0px;
+  padding: var(--gap);
+}
+.moreCurcle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-family: "gmarketsansbold";
+  color: var(--color-mb);
+  font-size: 14px;
+  z-index: 1;
+}
+.moreCurcle::before,
+.moreCurcle::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid var(--color-mb);
+  z-index: -1;
+  transition: 0.2s;
+  transition-timing-function: linear;
+}
+.moreCurcle::before {
+  background-color: transparent;
+  opacity: 1;
+}
+.moreCurcle::after {
+  background-color: var(--color-mb);
+  transform: scale(0);
+  opacity: 0;
+}
+.moreCurcle:hover {
+  color: white;
+}
+.moreCurcle:hover::after {
+  transform: scale(1);
+  opacity: 1;
+}
+.moreCurcle:hover::before {
+  transform: scale(1.2);
+  opacity: 0;
+}
+
 .mw {
   max-width: 1440px;
-  /* width: calc(100% - calc(var(--gap) * 2)); */
-  width: calc(100% - 32px);
+  /* 100% - 2rem */
+  width: calc(100% - calc(var(--gap) * 2));
   margin: auto;
-  border: 1px solid red;
 }
 
-/* header start .hd>nav>h1+.gnb+.func+.ham */
+/* header 시작 .hd >nav > h1+.gnb+.person+.ham */
 .hd {
   position: relative;
   z-index: 999;
 }
 .hd > nav {
-  /* border: 1px solid red; */
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: calc(var(--gap) / 2) 0;
+  padding: var(--gap) 0;
 }
-.hd > nav > * {
-  /* border: 1px solid blue; */
-}
+
 .hd img {
   height: 80px;
   padding-right: 6rem;
 }
+
 @media (min-width: 1101px) {
-  /* pc ver .gnb 관련 코드  */
-  /* .gnb 관련 코드 - 여기부터 */
+  /* PC 버전 .gnb 관련 코드  - 여기부터 */
   .gnb {
     display: flex;
   }
@@ -85,7 +167,7 @@ section > .inner,
     visibility: hidden;
     background-color: var(--color-sb);
     left: 0;
-    top: 108px;
+    top: 110px;
     transition: 0.5s;
   }
   .gnb:hover::before {
@@ -97,55 +179,38 @@ section > .inner,
     white-space: nowrap;
   }
   .gnb > li {
-    /* border: 1px solid black; */
     position: relative;
-    /* .sub가 넓이를 참고하고 싶기 때문에 여기에 relative 추가 */
   }
   .gnb > li > a {
-    /* border: 1px solid pink; */
-
-    padding: 1rem 5rem 1rem 0.5rem;
-    font-family: "gmarketsansbold";
-    font-size: 1.23rem;
-    transition: 0.3s;
-  }
-  .gnb > li:hover > a {
-    /* li에 hover를 넣어야 sub로 이동을 해도 hover 효과가 적용 됨 */
+    padding: 1rem 6rem 1rem 0.5rem;
+    font-family: "GmarketSansBold";
+    font-size: 1.3125rem;
     color: var(--color-mb);
   }
+  .gnb > li:hover > a {
+    color: var(--color-dg);
+  }
+
   .gnb:hover .sub {
     height: 180px;
     visibility: visible;
   }
-  /* 
-  .gnb > li:hover .sub 
-  이렇게 하면 서브 하나씩 떨어짐
-  */
   .sub {
-    /* border: 1px solid cyan; */
-
-    /* max-width: 100%; */
     min-width: 100%;
     position: absolute;
     padding-left: 0.5rem;
-    /* .gnb > li > a에 0.5rem을 줬으니 여백 맞춰주기 */
     height: 0;
-    overflow: hidden;
-    /* 높이 0값이 보이지 않기 위해 overflow: hidden;을 넣었고 */
     visibility: hidden;
-    /* 얘도 추가해주기 */
+    overflow: hidden;
     transition: 0.5s;
   }
   .sub > li:first-of-type {
     padding-top: 50px;
-    /* 마우스 호버했을 때 서브가 잘 잡히도록 이곳에 패딩을 넣음 */
   }
   .sub a {
-    /* border: 1px solid red; */
-
-    font-size: 1rem;
+    font-size: 1.1em;
     transition: 0.5s;
-    padding-bottom: 0.3rem;
+    padding-bottom: 1.3rem;
   }
   .sub a::after {
     content: "";
@@ -156,7 +221,7 @@ section > .inner,
     background-color: var(--color-mb);
     position: relative;
     bottom: 3px;
-    left: 3px;
+    left: 0;
     opacity: 0;
     transition: 0.5s;
   }
@@ -169,31 +234,36 @@ section > .inner,
   }
   /* .gnb 관련 코드 - 여기까지 */
 }
-.func {
+
+.person {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   white-space: nowrap;
 }
-.func a {
-  font-size: 0.75rem;
+.person a {
+  font-size: 0.875rem;
   color: var(--color-mb);
   position: relative;
 }
-.func a::before {
+.person a::before {
   content: "";
   position: absolute;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0%;
   height: 1px;
   background-color: var(--color-mb);
   bottom: -1px;
   opacity: 0;
   transition: 0.5s;
-  transform: scale(0);
 }
-.func a:hover::before {
-  /* bottom: -1px; */
+
+.person a:hover::before {
+  width: 100%;
   opacity: 1;
-  transform: scale(1);
+}
+.person a:hover {
+  color: var(--color-mb);
 }
 
 .ham {
@@ -206,115 +276,24 @@ section > .inner,
     height: 70px;
   }
   .gnb > li > a {
+    font-size: 1.1rem;
     padding-right: 4rem;
-    font-size: 1rem;
   }
-  .sub a {
-    font-size: 0.9rem;
+  .person a {
+    font-size: 0.8rem;
+  }
+  .sub {
+    font-size: 0.8em;
   }
 }
 @media (max-width: 1200px) {
   .gnb,
-  .func {
-    /* display: none; */
+  .person {
+    display: none;
+  }
+  .ham {
+    display: block;
   }
 }
-
-/* section1 .mainVisual 영역 시작 */
-.mainVisual .inner {
-  position: relative;
-  padding-bottom: 100px;
-}
-.mainVisual .card {
-  position: relative;
-  padding-bottom: 40%;
-  background-color: #fff;
-}
-.mainVisual .card > * {
-  position: absolute;
-}
-.mainVisual .card h3 {
-  left: 5%;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: "gmarketsansmedium";
-  color: var(--color-mb);
-  z-index: 10;
-}
-.mainVisual .card h3 > * {
-  display: block;
-}
-.mainVisual .card span {
-  font-size: 30px;
-  margin-bottom: 1rem;
-}
-.mainVisual .card strong {
-  font-size: 59px;
-  line-height: 1;
-}
-.mainVisual .card img {
-  width: 50%;
-  right: 100px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.mainVisual .mainSlide {
-  overflow: visible;
-}
-.mainVisual .mainSlide .swiper-pagination-bullet {
-  border-radius: 0;
-  width: 0px;
-  height: 1px;
-  margin: 0 10px;
-  text-align: right;
-  line-height: 0px;
-  text-indent: 20px;
-  /* direction: rtl; */
-}
-.mainVisual .mainSlide .swiper-pagination-bullet-active {
-  background-color: var(--color-mb);
-  width: 50px;
-  text-indent: 60px;
-}
-.mainVisual .pg1 {
-  width: auto;
-  /* text-align: left; */
-  bottom: -30px;
-}
-.quick {
-  background-color: var(--color-sb);
-  position: absolute;
-  bottom: 0;
-  transform: translateY(50%);
-  /* transform을 사용함으로써 항상 중앙을 유지함 */
-  z-index: 10;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-.quick > a {
-  width: 50%;
-  border: 1px solid red;
-  padding: 1.5rem;
-  font-size: 1.5rem;
-  font-family: "gmarketsansbold";
-  color: var(--color-dg);
-}
-
 @media (max-width: 1100px) {
-  /* 1100px = 앞으로 계속 쓰일 break point! */
-  /* header는 이전에 수정할 확률이 큼 */
-  .quick {
-    flex-wrap: wrap;
-  }
-  .quick > a {
-    width: calc(50% - 20px);
-    border: 1px solid white;
-    margin: 1px;
-  }
-}
-
-.eduMonth {
-  background-color: var(--color-mb);
-  color: var(--color-wh);
 }

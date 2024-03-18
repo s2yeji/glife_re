@@ -15,9 +15,35 @@ let mainSlide = new Swiper(".mainSlide", {
 });
 
 let eduSlide = new Swiper(".eduSlide", {
-  slidesPerView: 5,
-  spaceBetween: 30,
+  slidesPerView: "auto",
   centeredSlides: true,
+  spaceBetween: 32,
   loop: true,
-  speed: 1000,
+  autoplay: {
+    delay: 5000,
+  },
+  speed: 2500,
+});
+
+let snsSlide = new Swiper(".snsSlide", {
+  slidesPerView: 1,
+  spaceBetween: 16,
+  breakpoints: {
+    1100: {
+      slidesPerView: 3,
+    },
+  },
+});
+
+let newsSlide = new Swiper(".newsSlide", {
+  slidesPerView: 1,
+  spaceBetween: 48,
+  breakpoints: {
+    800: {
+      slidesPerView: 2,
+    },
+    1100: {
+      slidesPerView: 3,
+    },
+  },
 });
