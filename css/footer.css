@@ -44,6 +44,9 @@
   position: absolute;
   right: 0;
   top: 2rem;
+  border: 1px solid #4c4c4c;
+  font-size: 14px;
+  color: var(--color-lg);
 }
 .footer .family ul {
   display: none;
