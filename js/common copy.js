@@ -14,12 +14,8 @@ $ham.addEventListener('click', (e) => {
 });
 
 $gnb.addEventListener('click', (e) => {
-  let closestA = e.target.closest('a');
-  let closestLi = e.target.closest('li');
-
-  if (!closestA) return;
-
-  if (closestA.parentElement.parentElement === $gnb) {
+  if (!e.target.closest('a')) return;
+  if (e.target.closest('a').parentElement.parentElement === $gnb) {
     e.preventDefault();
   } else {
     $li.forEach((el) => {
@@ -29,14 +25,11 @@ $gnb.addEventListener('click', (e) => {
     });
   }
   $li.forEach((el) => {
-    if (el != closestLi) {
+    if (el != e.target.closest('li')) {
       el.classList.remove('on');
     }
   });
-
-  if (closestLi) {
-    closestLi.classList.toggle('on');
-  }
+  e.target.closest('li').classList.toggle('on');
 });
 
 let mainSlide = new Swiper('.mainSlide', {
